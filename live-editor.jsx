@@ -7,18 +7,6 @@ var React = require("react");
 var CodeMirrorEditor = require("./code-mirror-editor.jsx");
 var ComponentPreview = require("./live-compile.jsx");
 
-var HELLO_COMPONENT = "\
-\/\/ {{{\n\
-var HelloMessage = React.createClass({\n\
-  render: function() {\n\
-    return <div>Hello {this.props.name}</div>;\n\
-  }\n\
-});\n\
-\/\/ }}}\n\
-\n\
-return <HelloMessage name=\"John\" />;\
-";
-
 var ReactPlayground = React.createClass({
   propTypes: {
     codeText: React.PropTypes.string.isRequired
@@ -49,7 +37,4 @@ var ReactPlayground = React.createClass({
   },
 });
 
-React.renderComponent(
-  <ReactPlayground codeText={HELLO_COMPONENT} />,
-  document.getElementById('jsxCompiler')
-);
+module.exports = ReactPlayground;
