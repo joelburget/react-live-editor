@@ -14,6 +14,48 @@ var IS_MOBILE = (
     || navigator.userAgent.match(/Windows Phone/i)
 );
 
+var OPEN_MARK = /{{{/;
+var CLOSE_MARK = /}}}/;
+
+CodeMirror.registerGlobalHelper('fold', 'marked',
+    function(mode, mirror) {
+        return mode.name === 'javascript';
+    },
+    function(mirror, start) {
+        var lineNo = start.line;
+        var lineText = mirror.getLine(lineNo);
+        var lineCount = mirror.lineCount();
+
+        var openMatch = OPEN_MARK.exec(lineText);
+        var closeMatch = CLOSE_MARK.exec(lineText);
+
+        if (openMatch) {
+            // search forwards
+            for (var i = lineNo; i < lineCount; i++) {
+                closeMatch = CLOSE_MARK.exec(mirror.getLine(i));
+                if (closeMatch) {
+                    return {
+                        from: CodeMirror.Pos(lineNo, openMatch.index),
+                        to: CodeMirror.Pos(i, closeMatch.index + 3)
+                    };
+                }
+            }
+
+        } else if (closeMatch) {
+            // search backwards
+            for (var i = lineNo; i >= 0; i--) {
+                openMatch = OPEN_MARK.exec(mirror.getLine(i));
+                if (openMatch) {
+                    return {
+                        from: CodeMirror.Pos(i, openMatch.index),
+                        to: CodeMirror.Pos(lineNo, closeMatch.index + 3)
+                    };
+                }
+            }
+        }
+    }
+);
+
 var CodeMirrorEditor = React.createClass({
   componentDidMount: function() {
     if (IS_MOBILE) return;
@@ -27,7 +69,35 @@ var CodeMirrorEditor = React.createClass({
       theme: 'solarized-light',
       readOnly: this.props.readOnly
     });
+    this.editor.foldCode(0, { widget: '...' });
     this.editor.on('change', this.handleChange);
+
+    this.editor.on('beforeSelectionChange', (instance, obj) => {
+        // why is ranges plural?
+        var selection = obj.ranges[0];
+
+        var noRange = selection.anchor.ch === selection.head.ch &&
+                      selection.anchor.line === selection.head.line;
+        if (!noRange) {
+            return;
+        }
+
+        var cursor = selection.anchor;
+        var line = instance.getLine(cursor.line);
+        var match = OPEN_MARK.exec(line) || CLOSE_MARK.exec(line);
+
+            // the opening or closing mark appears on this line
+        if (match &&
+            // and the cursor is on it
+            // (this is buggy if both occur on the same line)
+            cursor.ch >= match.index &&
+            cursor.ch < match.index + 3) {
+
+                // TODO(joel) - figure out why this doesn't fold although it
+                // seems like it should work.
+                instance.foldCode(cursor, { widget: '...' });
+        }
+    });
   },
 
   componentDidUpdate: function() {
