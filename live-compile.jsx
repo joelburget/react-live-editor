@@ -43,7 +43,8 @@ var ComponentPreview = React.createClass({
           '/** @jsx React.DOM */' +
           '(function() {' +
               this.props.code +
-          '})();'
+          '})();',
+      { harmony: true }
       ).code;
     },
 

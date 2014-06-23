@@ -74,7 +74,9 @@ var CodeMirrorEditor = React.createClass({
 
     this.editor.on('beforeSelectionChange', (instance, obj) => {
         // why is ranges plural?
-        var selection = obj.ranges[0];
+        var selection = obj.ranges ?
+            obj.ranges[0] :
+            obj;
 
         var noRange = selection.anchor.ch === selection.head.ch &&
                       selection.anchor.line === selection.head.line;
