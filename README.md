@@ -17,3 +17,10 @@ Dynamic compilation of react components.
 ## live-editor.jsx
 
 Combination of `<CodeMirrorEditor>` and `<ComponentPreview>` which live-compiles what you type!
+
+# Running the demo
+
+* run `make`
+* run `python -m SimpleHTTPServer`
+* visit `http://localhost:8000/jsx-compiler.html`
+
