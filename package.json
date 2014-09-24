@@ -1,0 +1,26 @@
+{
+  "name": "react-live-edit",
+  "version": "0.1.0",
+  "description": "Live editor for React components",
+  "main": "edit.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joelburget/react-live-editor"
+  },
+  "keywords": [
+    "react-component",
+    "react",
+    "editor",
+    "component"
+  ],
+  "author": "Joel Burget",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.11.1",
+    "browserify": "^5.12.0",
+    "reactify": "^0.14.0"
+  }
+}
