@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require("react");
 
 var CodeMirrorEditor = require("./code-mirror-editor.jsx");

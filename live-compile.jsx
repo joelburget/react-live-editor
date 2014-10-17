@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require("react");
 
 var selfCleaningTimeout = {
@@ -40,7 +36,6 @@ var ComponentPreview = React.createClass({
 
     compileCode: function() {
       return JSXTransformer.transform(
-          '/** @jsx React.DOM */' +
           '(function() {' +
               this.props.code +
           '\n})();',
@@ -57,10 +52,10 @@ var ComponentPreview = React.createClass({
 
       try {
         var compiledCode = this.compileCode();
-        React.renderComponent(eval(compiledCode), mountNode);
+        React.render(eval(compiledCode), mountNode);
       } catch (err) {
         this.setTimeout(function() {
-          React.renderComponent(
+          React.render(
             <div className="playgroundError">{err.toString()}</div>,
             mountNode
           );

@@ -1,7 +1,3 @@
-/**
- * @jsx React.DOM
- */
-
 var React = require("react");
 var ReactPlayground = require('./live-editor.jsx');
 
@@ -17,7 +13,7 @@ var HelloMessage = React.createClass({\n\
 return <HelloMessage name=\"John\" />;\
 ";
 
-React.renderComponent(
+React.render(
   <ReactPlayground codeText={HELLO_COMPONENT} />,
   document.getElementById('jsxCompiler')
 );
