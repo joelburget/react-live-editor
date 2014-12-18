@@ -24,3 +24,6 @@ Combination of `<CodeMirrorEditor>` and `<ComponentPreview>` which live-compiles
 * run `python -m SimpleHTTPServer`
 * visit `http://localhost:8000/jsx-compiler.html`
 
+You should see something like this:
+
+![](live-editor.gif)
