@@ -1,5 +1,5 @@
 {
-  "name": "react-live-edit",
+  "name": "react-live-editor",
   "version": "0.1.0",
   "description": "Live editor for React components",
   "main": "edit.js",
