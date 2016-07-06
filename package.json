@@ -1,9 +1,10 @@
 {
   "name": "react-live-editor",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Live editor for React components",
-  "main": "edit.js",
+  "main": "index.js",
   "scripts": {
+    "prepublish": "babel --presets es2015,react . -d . --ignore node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
