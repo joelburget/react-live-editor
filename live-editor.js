@@ -1,7 +1,7 @@
 var React = require("react");
 
-var CodeMirrorEditor = require("./code-mirror-editor.jsx");
-var ComponentPreview = require("./live-compile.jsx");
+var CodeMirrorEditor = require("./code-mirror-editor");
+var ComponentPreview = require("./live-compile");
 
 var ReactPlayground = React.createClass({
   propTypes: {

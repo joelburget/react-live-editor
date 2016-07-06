@@ -1,5 +1,6 @@
-var React = require("react");
-var ReactPlayground = require('./live-editor.jsx');
+var React = require('react');
+var ReactDOM = require("react-dom");
+var ReactPlayground = require('./live-editor');
 
 var HELLO_COMPONENT = "\
 \/\/ {{{\n\
@@ -13,7 +14,7 @@ var HelloMessage = React.createClass({\n\
 return <HelloMessage name=\"John\" />;\
 ";
 
-React.render(
+ReactDOM.render(
   <ReactPlayground codeText={HELLO_COMPONENT} />,
   document.getElementById('jsxCompiler')
 );

@@ -1,4 +1,7 @@
 var React = require("react");
+var CodeMirror = require('codemirror');
+require('codemirror/mode/javascript/javascript');
+require('codemirror/addon/fold/foldcode');
 
 var IS_MOBILE = (
   navigator.userAgent.match(/Android/i)
@@ -56,7 +59,7 @@ var CodeMirrorEditor = React.createClass({
   componentDidMount: function() {
     if (IS_MOBILE) return;
 
-    this.editor = CodeMirror.fromTextArea(this.refs.editor.getDOMNode(), {
+    this.editor = CodeMirror.fromTextArea(this.refs.editor, {
       mode: 'javascript',
       lineNumbers: false,
       lineWrapping: true,

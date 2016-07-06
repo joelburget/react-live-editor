@@ -1,4 +1,6 @@
 var React = require("react");
+var ReactDOM = require("react-dom");
+var babel = require('babel-core');
 
 var selfCleaningTimeout = {
   componentDidUpdate: function() {
@@ -35,27 +37,27 @@ var ComponentPreview = React.createClass({
     },
 
     compileCode: function() {
-      return JSXTransformer.transform(
-          '(function() {' +
-              this.props.code +
-          '\n})();',
-      { harmony: true }
+      return babel.transform(
+        '(function() {' +
+            this.props.code +
+        '\n})();',
+        { presets: [require('babel-preset-es2015'), require('babel-preset-react')] }
       ).code;
     },
 
     executeCode: function() {
-      var mountNode = this.refs.mount.getDOMNode();
+      var mountNode = this.refs.mount;
 
       try {
-        React.unmountComponentAtNode(mountNode);
+        ReactDOM.unmountComponentAtNode(mountNode);
       } catch (e) { }
 
       try {
         var compiledCode = this.compileCode();
-        React.render(eval(compiledCode), mountNode);
+        ReactDOM.render(eval(compiledCode), mountNode);
       } catch (err) {
         this.setTimeout(function() {
-          React.render(
+          ReactDOM.render(
             <div className="playgroundError">{err.toString()}</div>,
             mountNode
           );
