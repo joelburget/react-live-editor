@@ -2,6 +2,12 @@
   "name": "react-live-editor",
   "version": "2.0.0",
   "description": "Live editor for React components",
+  "files": [
+    "index.js",
+    "code-mirror-editor.js",
+    "live-compile.js",
+    "live-editor.js"
+  ],
   "main": "index.js",
   "scripts": {
     "prepublish": "babel --presets es2015,react . -d . --ignore node_modules",
