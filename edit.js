@@ -16,5 +16,5 @@ return <HelloMessage name=\"John\" />;\
 
 ReactDOM.render(
   <ReactPlayground codeText={HELLO_COMPONENT} />,
-  document.getElementById('jsxCompiler')
+  document.getElementById('inject')
 );
