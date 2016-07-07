@@ -3,6 +3,7 @@ var ReactDOM = require("react-dom");
 var ReactPlayground = require('./live-editor');
 
 var HELLO_COMPONENT = "\
+import upper from 'upper';\n\
 \/\/ {{{\n\
 var HelloMessage = React.createClass({\n\
   render: function() {\n\
@@ -15,6 +16,12 @@ export default <HelloMessage name=\"John\" />;\
 ";
 
 ReactDOM.render(
-  <ReactPlayground codeText={HELLO_COMPONENT} />,
+  <ReactPlayground
+    codeText={HELLO_COMPONENT}
+    resolveModules={{
+      upper: {default: str => str.toUpperCase()},
+      lower: {lower: str => str.toLowerCase()},
+    }}
+  />,
   document.getElementById('inject')
 );
