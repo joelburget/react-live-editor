@@ -11,7 +11,7 @@ var HelloMessage = React.createClass({\n\
 });\n\
 \/\/ }}}\n\
 \n\
-return <HelloMessage name=\"John\" />;\
+export default <HelloMessage name=\"John\" />;\
 ";
 
 ReactDOM.render(

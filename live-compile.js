@@ -38,9 +38,7 @@ var ComponentPreview = React.createClass({
 
     compileCode: function() {
       return babel.transform(
-        '(function() {' +
-            this.props.code +
-        '\n})();',
+        this.props.code,
         { presets: [require('babel-preset-es2015'), require('babel-preset-react')] }
       ).code;
     },
