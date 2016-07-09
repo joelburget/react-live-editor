@@ -2,8 +2,6 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var babel = require('babel-core');
 
-var resolvePlugin = require('./babel-resolve-plugin').default;
-
 var selfCleaningTimeout = {
   componentDidUpdate: function() {
     clearTimeout(this.timeoutID);
@@ -18,12 +16,6 @@ var selfCleaningTimeout = {
 var ComponentPreview = React.createClass({
     propTypes: {
       code: React.PropTypes.string.isRequired
-    },
-
-    getDefaultProps() {
-      return {
-        resolveModules: {},
-      };
     },
 
     mixins: [selfCleaningTimeout],
@@ -50,8 +42,7 @@ var ComponentPreview = React.createClass({
         { presets:
           [ require('babel-preset-es2015')
           , require('babel-preset-react')
-          ],
-          plugins: [resolvePlugin(this.props.resolveModules)],
+          ]
         }
       ).code;
     },
@@ -64,7 +55,6 @@ var ComponentPreview = React.createClass({
       } catch (e) { }
 
       try {
-        window.modulemapping = this.props.resolveModules;
         var compiledCode = this.compileCode();
         console.log(compiledCode);
         ReactDOM.render(eval(compiledCode), mountNode);

@@ -30,10 +30,7 @@ var ReactPlayground = React.createClass({
         />
       </div>
       <div className="playgroundPreview">
-        <ComponentPreview
-          code={code}
-          resolveModules={this.props.resolveModules}
-        />
+        <ComponentPreview code={code} />
       </div>
     </div>;
   },

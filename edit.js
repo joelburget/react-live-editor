@@ -16,12 +16,6 @@ export default <HelloMessage name=\"John\" />;\
 ";
 
 ReactDOM.render(
-  <ReactPlayground
-    codeText={HELLO_COMPONENT}
-    resolveModules={{
-      upper: {default: str => str.toUpperCase()},
-      lower: {lower: str => str.toLowerCase()},
-    }}
-  />,
+  <ReactPlayground codeText={HELLO_COMPONENT} />,
   document.getElementById('inject')
 );
