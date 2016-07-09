@@ -1,6 +1,6 @@
 {
   "name": "react-live-editor",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Live editor for React components",
   "files": [
     "index.js",

@@ -57,7 +57,10 @@ var ComponentPreview = React.createClass({
       try {
         var compiledCode = this.compileCode();
         console.log(compiledCode);
-        ReactDOM.render(eval(compiledCode), mountNode);
+        ReactDOM.render(
+          React.createElement(eval(compiledCode)),
+          mountNode
+        );
       } catch (err) {
         this.setTimeout(function() {
           ReactDOM.render(
