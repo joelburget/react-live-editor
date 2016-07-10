@@ -2,6 +2,8 @@ var React = require("react");
 var CodeMirror = require('codemirror');
 require('codemirror/mode/javascript/javascript');
 require('codemirror/addon/fold/foldcode');
+import CodeMirrorHighlight from './code-mirror-highlight';
+
 
 var IS_MOBILE = (
   navigator.userAgent.match(/Android/i)
@@ -56,9 +58,19 @@ CodeMirror.registerGlobalHelper('fold', 'marked',
 );
 
 var CodeMirrorEditor = React.createClass({
-  componentDidMount: function() {
-    if (IS_MOBILE) return;
+  getDefaultProps() {
+    return {
+      renderType: IS_MOBILE ? 'pre' : 'textarea',
+    }
+  },
 
+  componentDidMount: function() {
+    if (this.props.renderType === 'textarea') {
+      this.instantiateTextarea();
+    }
+  },
+
+  instantiateTextarea() {
     this.editor = CodeMirror.fromTextArea(this.refs.editor, {
       mode: 'javascript',
       lineNumbers: false,
@@ -117,8 +129,8 @@ var CodeMirrorEditor = React.createClass({
     // wrap in a div to fully contain CodeMirror
     var editor;
 
-    if (IS_MOBILE) {
-      editor = <pre style={{overflow: 'scroll'}}>{this.props.codeText}</pre>;
+    if (this.props.renderType === 'pre') {
+      editor = <CodeMirrorHighlight codeText={this.props.codeText} />;
     } else {
       editor = <textarea ref="editor" defaultValue={this.props.codeText} />;
     }

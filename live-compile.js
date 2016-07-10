@@ -56,9 +56,8 @@ var ComponentPreview = React.createClass({
 
       try {
         var compiledCode = this.compileCode();
-        console.log(compiledCode);
         ReactDOM.render(
-          React.createElement(eval(compiledCode)),
+          eval(compiledCode),
           mountNode
         );
       } catch (err) {
