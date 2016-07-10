@@ -1,12 +1,17 @@
 {
   "name": "react-live-editor",
-  "version": "5.1.1",
+  "version": "5.2.1",
   "description": "Live editor for React components",
   "files": [
     "index.js",
     "code-mirror-editor.js",
     "live-compile.js",
-    "live-editor.js"
+    "live-editor.js",
+    "code-mirror-highlight.js",
+    "code-mirror-highlighting/jsparser.js",
+    "code-mirror-highlighting/stringstream.js",
+    "code-mirror-highlighting/tokenizejs.js",
+    "code-mirror-highlighting/tokenizer.js"
   ],
   "main": "index.js",
   "scripts": {
